@@ -1,0 +1,17 @@
+{
+  "name": "monmedecin",
+  "version": "1.0.0",
+  "description": "methode agile project",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "node index.js"
+  },
+  "author": "aymanyazidnabil",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
+}
