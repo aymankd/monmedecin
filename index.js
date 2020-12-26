@@ -6,7 +6,7 @@ app.use(express.static(path.join(__dirname,'assets')))
 app.set('view engine','ejs')
 app.set('views','views')
 
-app.listen(3000,() =>{
+app.listen(5050,() =>{
   console.log("server listening on port 3000")  
 })
 
