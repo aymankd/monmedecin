@@ -7,7 +7,7 @@ app.set('view engine','ejs')
 app.set('views','views')
 
 app.listen(4000,() =>{
-  console.log("server listening on port 3000")  
+  console.log("server listening on port 4000")  
 })
 
 app.get('/', function (req, res) {
