@@ -27,8 +27,21 @@ User.prototype = {
             }else
             callback(1);
         });
-    }
-}
+    },
 
+
+    login: function(body,callback)
+    {
+        con.query("SELECT * FROM user where email = '"+body.email+"' AND password ='"+body.pass+"'" ,
+         function (err, result, fields) {
+            if (err) throw err;
+
+            if(result.length == 0){
+                callback(1);
+            }else
+            callback(0);
+        }
+    }
+};
 
 module.exports = User;

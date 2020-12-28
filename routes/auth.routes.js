@@ -27,23 +27,27 @@ router.post(
         res.render('signup',{msg:'error : passwords are not the same'});
     }
 )
+
+  
 router.get('/login', (req,res,next) => {
     res.render('login')
 })
 router.post(
     '/login',(req,res,next) => {
-        let UserInput = {
-            email: req.body.email,
-            password: req.body.pass
-        };
+       
 
-        user.login(UserInput,function (lastId) {
-            if(lastId)
-                res.send('Welcome'+ UserInput.email);
-            else
-                console.log('error creating user');
-            
-        })
-    }
-)
+        
+            let UserInput = {
+                email: req.body.email,
+                pass: req.body.pass,
+            };
+           
+            user.login(UserInput,function (resolt) {
+                if(resolt==1)
+                res.render('login',{msg:'error : Email ou mot de passe incorrect'});
+                    
+                else if(resolt==0)
+                res.send('Connexion réussie');
+                })
+            })
 module.exports = router
