@@ -40,7 +40,7 @@ User.prototype = {
                 callback(1);
             }else
             callback(0);
-        }
+        })
     }
 };
 
