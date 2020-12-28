@@ -110,10 +110,7 @@
                         Continuer
                     </button>
                 </div>
-                <% if (locals.msg) { %>
-                  <h2><%= msg %></h2>
-                <% } %>
-
+             
                 <div class="text-center p-t-12">
                     <span class="txt1">
                       Mot de passe oublié?
@@ -122,7 +119,11 @@
                       Reinitialisé
                     </a>
                 </div>
-
+                <div class="container-login100-form-btn">
+                  <% if (locals.msg) { %>
+                    <h2 class="msgsignup"><%= msg %></h2>
+                  <% } %>
+                </div>
                 <div class="text-center p-t-136">
                   <a> Vous n'avez pas de compte ? </a> <br>
                     <a class="txt2" href="#">

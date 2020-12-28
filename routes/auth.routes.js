@@ -20,11 +20,11 @@ router.post(
                 if(resolt==0)
                     res.render('login');
                 else if(resolt==1)
-                res.render('signup',{msg:'error : email existe déja'});
+                res.render('signup',{msg:'Email existe déja'});
             })
         }
         else
-        res.render('signup',{msg:'error : passwords are not the same'});
+        res.render('signup',{msg:'Mot de passe incorrect'});
     }
 )
 
@@ -44,7 +44,7 @@ router.post(
            
             user.login(UserInput,function (resolt) {
                 if(resolt==1)
-                res.render('login',{msg:'error : Email ou mot de passe incorrect'});
+                res.render('login',{msg:'Email ou mot de passe incorrect'});
                     
                 else if(resolt==0)
                 res.send('Connexion réussie');
