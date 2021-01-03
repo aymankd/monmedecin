@@ -19,7 +19,15 @@ app.listen(4000,() =>{
 
 app.use('/',homeRouter)
 app.use('/',authRouter)
+
+app.use('/recherche',function (req, res) {
+  res.render('recherche')
+})
+
+
 app.use(function (req, res) {
   res.render('404')
 })
+
+
 
