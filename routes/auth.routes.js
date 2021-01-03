@@ -34,20 +34,18 @@ router.get('/login', (req,res,next) => {
 })
 router.post(
     '/login',(req,res,next) => {
-       
-
-        
             let UserInput = {
                 email: req.body.email,
                 pass: req.body.pass,
             };
-           
             user.login(UserInput,function (resolt) {
                 if(resolt==1)
                 res.render('login',{msg:'Email ou mot de passe incorrect'});
-                    
                 else if(resolt==0)
-                res.send('Connexion réussie');
+                {
+                    req.session.user = user;
+                    res.send('Connexion réussie');    
+                }
                 })
             })
 module.exports = router
