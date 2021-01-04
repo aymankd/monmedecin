@@ -28,7 +28,6 @@ router.post(
     }
 )
 
-  
 router.get('/login', (req,res,next) => {
     res.render('login')
 })
@@ -44,7 +43,7 @@ router.post(
                 else if(resolt==0)
                 {
                     req.session.user = user;
-                    res.send('Connexion réussie');    
+                    res.redirect('.');
                 }
                 })
             })
