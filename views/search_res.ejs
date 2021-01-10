@@ -7,12 +7,12 @@
 
 
 
-
-<div class="col-lg-6 mt-4">
+<a href= <%  __append('"/seemore/'+row.Id_user+'"') %> >
+  <div class="col-lg-6 mt-4" >
     <div class="member d-flex align-items-start">
       <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
       <div class="member-info">
-        <h4><%  __append(row.Nom_M+" "+row.Prenom_M) %>  </h4>
+        <h4><%  __append(row.Nom_M+' '+row.Prenom_M) %>  </h4>
         <span><%  __append(row.Specialité) %></span>
         <p><%  __append(row.Hopital) %></p>
         <div class="social">
@@ -24,6 +24,7 @@
       </div>
     </div>
   </div>
+</a>
 
 <%  });   %>
 

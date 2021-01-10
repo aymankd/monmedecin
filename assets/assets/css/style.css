@@ -349,6 +349,10 @@ h6 {
   font-size: 14px;
   display: inline-block;
 }
+.anl {
+  background: #B4003B;
+}
+
 
 .appointment-btn:hover {
   background: #166ab5;

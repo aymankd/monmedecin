@@ -32,12 +32,14 @@ User.prototype = {
     {
         con.query("SELECT * FROM user where email = '"+body.email+"' AND password ='"+body.pass+"'" ,
          function (err, result, fields) {
-            if (err) throw err;
-
-            if(result.length == 0){
+            if (err) 
+                console.log(err.message);
+            else {
+                if(result.length == 0){
                 callback(1);
-            }else
-            callback(0);
+                }else
+                callback(0);
+            }
         })
     }
 };

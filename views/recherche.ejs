@@ -256,8 +256,17 @@
 
     $(document).ready(function(){
         $("#searchin").on("input", function(){
-          search = $('#searchin').val();
-          if(search!='')
+          search();
+        });
+    });
+
+
+
+
+
+    function search() {
+      search = $('#searchin').val();
+      if(search!='')
           $.ajax({
             url : "/recherche",
             data :{
@@ -269,9 +278,7 @@
             }
           })
           else $('#search_resu').html('')
-        });
-    });
-
+    }
   </script>
 </body>
 </html>
