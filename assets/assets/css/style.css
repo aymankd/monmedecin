@@ -337,6 +337,18 @@ h6 {
   font-size: 14px;
   display: inline-block;
 }
+.SeeMore {
+  margin-left: -5px;
+  margin-top: 5px;
+  background: #1977cc;
+  color: #fff;
+  border-radius: 50px;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+}
 
 .appointment-btn:hover {
   background: #166ab5;
@@ -1893,4 +1905,32 @@ section {
 
 .marginresultsearch {
   margin-top: -135px;
+}
+
+.imagedoctor {
+  height: 200px;
+  width: 200px;
+}
+/*doc css */
+.Docname {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 30px;
+
+  color: #2c4964;
+}
+.type {
+  color: #2282db;
+
+  font-size: 15px;
+}
+.addresse {
+  color: #1e2327;
+  font-weight: bold;
+  font-size: 15px;
+}
+.expertience {
+  color: #979797;
+  font-weight: normal;
+  font-size: 16px;
 }

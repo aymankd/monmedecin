@@ -17,7 +17,9 @@ app.set('views','views')
 app.listen(4000,() =>{
   console.log("server listening on port 4000")  
 })
-
+app.get('/seemore', (req,res,next) => {
+  res.render('seemore')
+})
 app.use('/',homeRouter)
 app.use('/',authRouter)
 app.use('/',RechRouter)
