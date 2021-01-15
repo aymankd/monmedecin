@@ -16,13 +16,16 @@ User.prototype = {
 
         con.query("SELECT * FROM user where email = '"+body.email+"'", function (err, result, fields) {
             if (err) throw err;
-
             if(result.length == 0)
             {
                 let sql = `INSERT INTO user(Email, Password) VALUES (?, ?)` ;
-                con.query(sql,[body.email,body.password],function(err, lastId){
+                con.query(sql,[body.email,body.password],function(err, data){
                     if(err) throw err;
-                    callback(0);
+                    let sql = `INSERT INTO patient(Id_user) VALUES (?)` ;
+                    con.query(sql,[data['insertId']],function(er){
+                        if(er) throw er;
+                         callback(0);
+                    })
                 })
             }else
             callback(1);
