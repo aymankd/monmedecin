@@ -491,6 +491,7 @@ h6 {
 .hero_back_recherche {
   background: url("../img/back_rs.svg") top center;
 }
+
 .rowRS {
   margin-top: 56px;
 }
@@ -1942,4 +1943,23 @@ section {
   color: #979797;
   font-weight: normal;
   font-size: 16px;
+}
+
+.row-container {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+
+.row-container:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+button {
+  position: relative;
+  bottom: 1px;
+}
+@media screen and (max-width: 992px) {
+  .le-hide {
+    visibility: hidden;
+  }
 }
