@@ -490,3 +490,6 @@ iframe {
   line-height: 1.7;
   color: #b4003b;
 }
+.details p {
+  font-size: 12px;
+}

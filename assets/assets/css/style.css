@@ -350,9 +350,8 @@ h6 {
   display: inline-block;
 }
 .anl {
-  background: #B4003B;
+  background: #b4003b;
 }
-
 
 .appointment-btn:hover {
   background: #166ab5;
@@ -1181,6 +1180,12 @@ section {
 
 .departments .details p {
   color: #777777;
+}
+.details p {
+  font-size: 13px;
+}
+.daaa {
+  font-size: 10px;
 }
 
 .departments .details p:last-child {
