@@ -45,6 +45,23 @@ User.prototype = {
                 }
             }
         })
+    },
+    annulerrdv: function(ids,callback)
+    {
+        con.query("DELETE FROM `rendezvous` WHERE id_medecin="+ids.medecinid+" and id_patient="+ids.userid , function (err, result) {
+            if (err) 
+                console.log(err.message)
+            callback();
+        }); 
+    },
+    demanderrdv: function(ids,callback)
+    {
+        con.query("INSERT INTO `rendezvous`(`id_medecin`, `id_patient`, `date`, `demande`) VALUES ("+ids.medecinid+","+ids.userid+",CURRENT_DATE,true)" , function (err, result) {
+            if (err) 
+                console.log(err.message)
+            callback();
+        }); 
+
     }
 };
 

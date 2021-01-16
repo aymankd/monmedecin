@@ -100,7 +100,12 @@
        
             <h5 class="expertience">10 ans d'experience</h5> 
              <br>
-            <a href="#departments" id="rdv" class="SeeMore scrollto ">Prendre un rendez vous</a>
+             <% if (locals.rdv) 
+               __append('<a href="#departments" id="rdv" class="SeeMore scrollto ">Prendre un rendez vous</a>')
+             else
+               __append('<a href="#departments" id="rdv" class="SeeMore scrollto anl">Annulez le rendez vous</a>')
+               %>
+            
         </div>
         </div>
       </section><!-- End Departments Section -->
@@ -346,36 +351,39 @@
   <script src="/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
-  <script src=""></script>
+
   
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
   <script>
     $(document).ready(function(){
+      var id_medecin = <%  __append(med[0].Id_user) %>
         $("#rdv").click(function(){
+          console.log("button clicked")
           if($("#rdv").hasClass("anl"))
           {
-            $("#rdv").removeClass("anl")
-            $("#rdv").html("Prendre un rendez vous");
-          }else
-          {
-            $("#rdv").addClass("anl")
-            $("#rdv").html("annuler rendez vous");
-          }
-        });
-        $("#searchin").on("input", function(){
-          search = $('#searchin').val();
-          $.ajax({
-            url : "/recherche",
+            $.ajax({
+            url : "/rendezvous",
             data :{
-              Stxt: search 
+              idmedecin : id_medecin,
+              type : "annuler"
             },
             method:"POST",
-            success : function (res) {
-              $('#search_resu').html(res)
-            }
+            success : location.reload()
           })
+          }else
+          {
+            $.ajax({
+              url : "/rendezvous",
+            data :{
+              idmedecin : id_medecin,
+              type : "demander"
+            },
+            method:"POST",
+            success : location.reload()
+          })
+          }
         });
     });
 

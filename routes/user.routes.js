@@ -9,10 +9,11 @@ router.use('/seemore/:id', (req,res) => {
     search.seemore(medecinId,function (medinfo) {
         // connected_user_id : req.session.user.userid
         // medecin id : medecinId
-        console.log("MedecinId : "+medecinId)
-        console.log("UserId : "+user_id)
+         var rdvids = {userid : user_id,medecinid : medecinId};
+         search.testrendezvous(rdvids,function (demande) {
+            res.render('seemore',{med:medinfo,rdv:demande})
+         })
         
-        res.render('seemore',{med:medinfo})
     })
 })
 

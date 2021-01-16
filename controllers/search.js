@@ -28,6 +28,17 @@ Search.prototype = {
             else
             callback(result);
         }); 
+    },
+    testrendezvous: function(ids,callback){
+        con.query("SELECT * FROM rendezvous where id_medecin = "+ids.medecinid+" and id_patient = "+ids.userid+" and demande = true " , function (err, result) {
+            if (err) 
+                console.log(err.message)
+            else if(result.length == 0)
+                callback(true)
+            else if(result.length > 0)
+                callback(false)
+        }); 
+
     }
 };
 
