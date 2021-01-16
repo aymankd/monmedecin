@@ -6,14 +6,13 @@ var con = mysql.createConnection({
   password: "",
   database: "monmedecin"
 });
-
+var userid;
 function User(){
-
+    this.userid = 0;
 };
 User.prototype = {
     create: function(body,callback)
     {
-
         con.query("SELECT * FROM user where email = '"+body.email+"'", function (err, result, fields) {
             if (err) throw err;
             if(result.length == 0)
@@ -39,9 +38,11 @@ User.prototype = {
                 console.log(err.message);
             else {
                 if(result.length == 0){
-                callback(1);
+                callback(null);
                 }else
-                callback(0);
+                {
+                    callback(result[0].Id_user);
+                }
             }
         })
     }

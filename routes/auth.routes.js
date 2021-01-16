@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const User = require('../controllers/user')
-const user = new User();
+var user = new User();
 
 router.get('/signup', (req,res,next) => {
     res.render('signup')
@@ -38,10 +38,11 @@ router.post(
                 pass: req.body.pass,
             };
             user.login(UserInput,function (resolt) {
-                if(resolt==1)
+                if(resolt==null)
                 res.render('login',{msg:'Email ou mot de passe incorrect'});
-                else if(resolt==0)
+                else 
                 {
+                    user.userid = resolt;
                     req.session.user = user;
                     res.redirect('.');
                 }
