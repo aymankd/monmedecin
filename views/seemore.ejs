@@ -370,7 +370,10 @@
               type : "annuler"
             },
             method:"POST",
-            success : location.reload()
+            success : function() {
+              $("#rdv").removeClass("anl")
+              $("#rdv").html("Prendre un rendez vous")
+            }
           })
           }else
           {
@@ -381,7 +384,10 @@
               type : "demander"
             },
             method:"POST",
-            success : location.reload()
+            success : function () {
+              $("#rdv").addClass("anl")
+              $("#rdv").html("annuler rendez vous")
+            }
           })
           }
         });
