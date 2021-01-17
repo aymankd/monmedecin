@@ -42,8 +42,12 @@ router.post(
                 res.render('login',{msg:'Email ou mot de passe incorrect'});
                 else 
                 {
-                    user.userid = resolt;
+                    user.userid = resolt.Id_user;
                     req.session.user = user;
+                    if(resolt.type == 0)
+                        req.session.type = "patient";
+                    else if(resolt.type == 1)
+                        req.session.type = "medecin";
                     res.redirect('.');
                 }
                 })

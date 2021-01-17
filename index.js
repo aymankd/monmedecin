@@ -20,17 +20,7 @@ app.listen(4000,() =>{
   console.log("server listening on port 4000")  
 })
 
-app.use('/doc', (req,res,next) => {
-  res.render('prfilemedecin')
-})
 
-app.use('/Rendez_vous', (req,res,next) => {
-  res.render('Rendez_vous')
-})
-
-app.use('/calendrier', (req,res,next) => {
-  res.render('calendrier')
-})
 
 app.use('/',homeRouter)
 app.use('/',authRouter)
