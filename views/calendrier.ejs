@@ -8,7 +8,7 @@
   <title>Monmedecin - Home</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+   
   <!-- Favicons -->
 
   <!-- Google Fonts -->
@@ -48,26 +48,6 @@
           <li class="active"><a href="#header">Accueil</a></li>
           <li><a href="#about">À propos</a></li>
           <li><a href="#services">Nos services</a></li>
-        
-       <!-- <li><a href="#departments">Departments</a></li>  
-          <li><a href="#doctors">Doctors</a></li>
-          <li class="drop-down"><a href="">Drop Down</a> 
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="drop-down"><a href="#">Deep Drop Down</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->  
           <li><a href="#contact">Contactez nous</a></li>
         
         </ul>
@@ -80,20 +60,48 @@
 
   <main id="main">
 
-   
-
-   
-
-    <!-- ======= Services Section ======= -->
-
-   <section id="services" class="services">
     
-      <div class="container">
-        <h1 class="rowRS title">Gerez vos rendez-vous</h1>
-        <div class="row rowRST">
-             
-      </div>
-    </section> <!-- End Services Section -->
+    
+    <div id="calendar"></div>
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.css" rel="stylesheet"/>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.print.css" rel="stylesheet"  media="print" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.js"></script>
+    <script type="text/javascript">    
+        $(document).ready(function(){
+                var calendar = $("#calendar").fullCalendar({  
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay,listWeek'
+                    },
+                    navLinks: true, 
+                    editable: true,
+                    eventLimit: true, 
+                    events: [
+                        {
+                            title  : 'event1',
+                            start  : '2017-04-01'
+                        },
+                        {
+                            title  : 'event2',
+                            start  : '2017-04-03',
+                            end    : '2017-04-05'
+                        },
+                        {
+                            title  : 'event3',
+                            start  : '2017-04-09T12:30:00',
+                            allDay : false // will make the time show
+                        }
+                    ],  // request to load current events
+                   
+                });
+                
+             });
+        </script>
   
 
 
