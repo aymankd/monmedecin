@@ -62,6 +62,34 @@ User.prototype = {
             callback();
         }); 
 
+    },
+    supprimerRDV : function(ids,callback){
+        con.query("DELETE FROM `rendezvous` WHERE id_medecin="+ids.medecinid+" and id_patient="+ids.userid , function (err, result) {
+            if (err) 
+                console.log(err.message)
+            callback();
+        }); 
+    },
+    confirmerRDV : function(data,callback){
+
+        con.query("UPDATE `rendezvous` SET date ="+data.date+" , demande = 1 WHERE id_medecin="+data.medecinid+" and id_patient="+data.userid , function (err, result, fields) {
+            if (err) 
+            console.log(err.message)
+        callback();
+        }); 
+    },
+    getmedecintrdv : function(idm,callback){
+        
+        con.query("SELECT * FROM rendezvous where id_medecin = "+idm+" and demande = true ",
+         function (err, result, fields) {
+            if (err) 
+                console.log(err.message);
+            else {
+                var data={}
+                 callback(result);
+            }
+        })
+
     }
 };
 

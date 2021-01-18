@@ -118,89 +118,33 @@
                 
               </div>
               <div class="row">
+                <% if (locals.data) { 
+  
+                  data.forEach( (row) => {
+                    
+                  %>
                <div class="col-sm-4 col-lg-12 mt-2 mb-2">
                   <div class="m-0 row row-container bg-white p-3">
                     
-                    <div class="col-sm-12 col-lg-3  p-0 p-0 pl-lg-5">
-                      Lorem Ipsum Longname
-                    </div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">
-                      usermaster@gmail.com
-                    </div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">
-                      09186886862
-                    </div>
-                    <div class="col-sm-12 col-lg-5 p-0" style="
-    margin-left: 750px;
-    margin-top: -20px;
-">
+                    <div class="col-sm-12 col-lg-3  p-0 p-0 pl-lg-5"> Lorem Ipsum Longname</div>
+                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">usermaster@gmail.com </div>
+                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5"> 09186886862</div>
+                    <div class="col-sm-12 col-lg-5 p-0" style="margin-left: 750px; margin-top: -20px;">
      
                       <button class="btn btn-sm btn-success d-inline-block mr-1"><i class="fas fa-check-square"></i>               </button>
-                      <button class="btn btn-sm btn-danger d-inline-block"><i class="fas fa-trash-alt"></i></i>               </button>
+                      <button class="btn btn-sm btn-danger d-inline-block" method="post"><i class="fas fa-trash-alt"></i></i>               </button>
                       <input class="btn btn-sm btn-success ddIn d-inline-block " type="datetime-local" id="example-datetime-local-input">
 
                     </div>
                   </div>
                 </div>
                 
-                <div class="col-sm-4 col-lg-12 mt-2 mb-2">
-                  <div class="m-0 row row-container bg-white p-3">
-                   
-                    <div class="col-sm-12 col-lg-3  p-0 p-0 pl-lg-5">
-                      Lorem Ipsum Longname
-                    </div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">
-                      usermaster@gmail.com
-                    </div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">
-                      <span class="mr-5">09186886862</span>
-                    </div>
-                    <div class="col-sm-12 col-lg-5 p-0" style="
-    margin-left: 750px;
-    margin-top: -20px;
-">
             
-                          
-                          <button class="btn btn-sm btn-success d-inline-block mr-1"><i class="fas fa-check-square"></i>                </button>
-                      <button class="btn btn-sm btn-danger d-inline-block"><i class="fas fa-trash-alt"></i></i>               </button>
-                      <input class="btn btn-sm btn-success ddIn d-inline-block " type="datetime-local" id="example-datetime-local-input">
- 
-            
-                    </div>
-                  </div>
-                </div>
               
-            <div class="col-sm-4 col-lg-12 mt-2 mb-2">
-                  <div class="m-0 row row-container bg-white p-3">
-                   
-                    <div class="col-sm-12 col-lg-3  p-0 p-0 pl-lg-5">
-                      Lorem Ipsum Longname
-                    </div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">
-                      usermaster@gmail.com
-                    </div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">
-                      <span class="mr-5">09186886862</span>
-                    </div>
-                    <div class="col-sm-12 col-lg-5 p-0" style="
-    margin-left: 750px;
-    margin-top: -20px;
-">
-            
-                          
-                          <button class="btn btn-sm btn-success d-inline-block mr-1"><i class="fas fa-edit"></i>                </button>
-                      <button class="btn btn-sm btn-danger d-inline-block"><i class="fas fa-trash-alt"></i></i>               </button>
-                      <input class="btn btn-sm btn-success ddIn d-inline-block " type="datetime-local" id="example-datetime-local-input">
+                <%  });   %>
 
-            
-                    </div>
-                  </div>
-                </div>
-            
-            
-            
-              
-              </div>
+                <% }  %>
+                 </div>
             </div>
 
         </div>
