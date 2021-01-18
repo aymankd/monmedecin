@@ -17,7 +17,7 @@ User.prototype = {
             if (err) throw err;
             if(result.length == 0)
             {
-                let sql = `INSERT INTO user(Email, Password) VALUES (?, ?)` ;
+                let sql = `INSERT INTO user(Email, Password,type) VALUES (?, ?,false)` ;
                 con.query(sql,[body.email,body.password],function(err, data){
                     if(err) throw err;
                     let sql = `INSERT INTO patient(Id_user) VALUES (?)` ;
@@ -41,7 +41,7 @@ User.prototype = {
                 callback(null);
                 }else
                 {
-                    callback(result[0].Id_user);
+                    callback(result[0]);
                 }
             }
         })
