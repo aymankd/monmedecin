@@ -100,16 +100,16 @@
                  <div class="col-lg-12">
                   <div class="m-0 row p-3">
                     
-                    <div class="col-sm-12 col-lg-3 p-0 pl-lg-5">
+                    <div class="col-sm-12 col-lg-2 p-0 pl-lg-5">
                      <strong> Nom</strong>
                     </div>
-                    <div class="col-sm-12 col-lg-3 p-0 pl-lg-5">
+                    <div class="col-sm-12 col-lg-2 p-0 pl-lg-5">
                       <strong>Prenom</strong>
                     </div>
-                    <div class="col-sm-12 col-lg-3 p-0 pl-lg-5">
+                    <div class="col-sm-12 col-lg-4 p-0 pl-lg-5">
                         <strong>Date de demande</strong>
                     </div>
-                    <div class="col-sm-12 col-lg-1 p-0">
+                    <div class="col-sm-12 col-lg-4 p-0">
                       <strong>Action</strong>
                     </div>
                   </div>
@@ -118,32 +118,34 @@
                 
               </div>
               <div class="row">
-                <% if (locals.data) { 
+                <% if (locals.rdv) { 
   
-                  data.forEach( (row) => {
+                  rdv.rendvinfo.forEach( (row) => {
                     
                   %>
-               <div class="col-sm-4 col-lg-12 mt-2 mb-2">
+               <div id="rdv-row-<%  __append(row.idp)%>" class="col-sm-4 col-lg-12 mt-2 mb-2">
                   <div class="m-0 row row-container bg-white p-3">
                     
-                    <div class="col-sm-12 col-lg-3  p-0 p-0 pl-lg-5"> Lorem Ipsum Longname</div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5">usermaster@gmail.com </div>
-                    <div class="col-sm-12 col-lg-3 p-0 p-0 pl-lg-5"> 09186886862</div>
-                    <div class="col-sm-12 col-lg-5 p-0" style="margin-left: 750px; margin-top: -20px;">
+                    <div class="col-sm-12 col-lg-2  p-0 p-0 pl-lg-5"><%  __append(row.nom) %></div>
+                    <div class="col-sm-12 col-lg-2 p-0 p-0 pl-lg-5"><%  __append(row.prenom) %></div>
+                    <div class="col-sm-12 col-lg-4 p-0 p-0 pl-lg-5"><%  __append(row.date.toLocaleString()) %></div>
+                    <div class="col-sm-12 col-lg-4 p-0" style="margin-left: 66%; margin-top: -2.5%;">
      
-                      <button class="btn btn-sm btn-success d-inline-block mr-1"><i class="fas fa-check-square"></i>               </button>
-                      <button class="btn btn-sm btn-danger d-inline-block" method="post"><i class="fas fa-trash-alt"></i></i>               </button>
-                      <input class="btn btn-sm btn-success ddIn d-inline-block " type="datetime-local" id="example-datetime-local-input">
+                      <button class="btn btn-sm btn-success d-inline-block mr-1" onclick="validaterdv(<%  __append(row.idp)%>)"><i class="fas fa-check-square"></i>               </button>
+                      <button class="btn btn-sm btn-danger d-inline-block" onclick="deleterdv(<%  __append(row.idp)%>)"><i class="fas fa-trash-alt"></i></i>               </button>
+                      <input class="btn btn-sm btn-success ddIn d-inline-block " type="datetime-local" id="date-<%  __append(row.idp)%>">
 
                     </div>
                   </div>
+
+                  
                 </div>
-                
-            
-              
                 <%  });   %>
 
-                <% }  %>
+                  <% }  %>
+            
+              
+
                  </div>
             </div>
 
@@ -246,13 +248,51 @@
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
-  <script src=""></script>
+  <script type="text/javascript">
+
+    function deleterdv(id) {
+      $.ajax({
+            url : "/Supprdvmedecin",
+            data :{
+              idu: id
+            },
+            method:"POST",
+            success : function (res) {
+             console.log(res)
+             row = document.getElementById('rdv-row-'+id);
+             row.remove()
+            }
+          })
+    }
+
+    function validaterdv(id) {
+          var dateinp = document.getElementById('date-'+id)
+          valdate = dateinp.value;
+          if(valdate!=""){
+            $.ajax({
+            url : "/Confrdvmedecin",
+            data :{
+              idu: id,
+              date:valdate
+            },
+            method:"POST",
+            success : function (res) {
+             console.log(res)
+             row = document.getElementById('rdv-row-'+id);
+             row.remove()
+            }
+          })
+          }
+    }
+
+
+
+</script>
   
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
-
+  <script type="text/javascript">
     $(document).ready(function(){
         $("#searchin").on("input", function(){
           search = $('#searchin').val();

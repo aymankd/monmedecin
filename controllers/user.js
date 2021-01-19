@@ -71,25 +71,55 @@ User.prototype = {
         }); 
     },
     confirmerRDV : function(data,callback){
-
-        con.query("UPDATE `rendezvous` SET date ="+data.date+" , demande = 1 WHERE id_medecin="+data.medecinid+" and id_patient="+data.userid , function (err, result, fields) {
+        con.query("UPDATE `rendezvous` SET daterdv ='"+data.date+"' , demande = 0 WHERE id_medecin="+data.medecinid+" and id_patient="+data.userid , function (err, result, fields) {
             if (err) 
             console.log(err.message)
         callback();
         }); 
     },
     getmedecintrdv : function(idm,callback){
-        
+        console.log('id medecin : '+idm)
+        var rdvdata={"rendvinfo":[]};
+        var count = 0;
         con.query("SELECT * FROM rendezvous where id_medecin = "+idm+" and demande = true ",
-         function (err, result, fields) {
+         function (err, result) {
             if (err) 
                 console.log(err.message);
             else {
-                var data={}
-                 callback(result);
+                if(result.length!=0)
+                result.forEach(element => {
+                    console.log("entred foreach")
+                    con.query("SELECT * FROM patient where Id_user = "+element.id_patient,
+                        function (err, res) {
+                        if (err)
+                            console.log(err.message);
+                        else{
+                            console.log(element.date)
+                        rowline = {'nom':res[0].Nom,'prenom':res[0].Prenom,'date':element.date,'idp':element.id_patient};
+                        rdvdata["rendvinfo"].push(rowline);
+                        console.log("entred foreach query")
+                        count++;
+                        if(count == result.length)
+                        {
+                            callback(rdvdata);            
+                        }
+                        }
+                    })
+                });
+                else
+                callback(null)
             }
         })
-
+    },
+    getmedecinrdv : function(id,callback){
+        con.query("SELECT * FROM rendezvous where id_medecin = "+id+" and demande = false ", function (err, result, fields) {
+            if (err) 
+            console.log(err.message)
+            else if(result.length!=0)
+                callback(result);
+            else
+                callback(null);
+        }); 
     }
 };
 

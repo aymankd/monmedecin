@@ -20,7 +20,9 @@ app.listen(4000,() =>{
   console.log("server listening on port 4000")  
 })
 
-
+app.use('/testcalendar', (req,res,next) => {
+  res.render('gghtml')
+})
 
 app.use('/',homeRouter)
 app.use('/',authRouter)

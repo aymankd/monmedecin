@@ -2,16 +2,22 @@ const router = require('express').Router()
 const User = require('../controllers/user')
 var userf = new User();
 
+    router.use('/calendrier', (req,res,next) => {
+        var userm = req.session.user;
+        userf.getmedecinrdv(userm.userid,function (resss) {
+            res.render('calendrier',{data:resss})
+        })
+    })
+
     router.use('/Rendez_vous', (req,res,next) => {
         var userm = req.session.user;
-    userf.getmedecintrdv(userm.userid,function (resss) {
-        res.render('Rendez_vous',{rdv:resss})
-        })
-        
+        userf.getmedecintrdv(userm.userid,function (resss) {
+            console.log("data parsed")
+            console.log(resss)
+            res.render('Rendez_vous',{rdv:resss})
+        })  
     })
-    router.use('/calendrier', (req,res,next) => {
-        res.render('calendrier')
-    })
+
     router.post('/rendezvous',function (req, res) {
         var user = req.session.user;
         var data = req.body;
@@ -28,7 +34,7 @@ var userf = new User();
     router.post('/Supprdvmedecin', (req,res) => {
         var userm = req.session.user;
     var datam = req.body;
-    var rdvdata = {userid : userm.userid,medecinid : datam.idmedecin};
+    var rdvdata = {medecinid : userm.userid,userid : datam.idu};
     userf.supprimerRDV(rdvdata,function () {
         res.send('Supprimer avec succes')
         })
@@ -36,7 +42,7 @@ var userf = new User();
     router.post('/Confrdvmedecin', (req,res) => {
         var userm = req.session.user;
     var datam2 = req.body;
-    var rdvdata2 = {userid : userm.userid,medecinid : datam2.idmedecin, date:datam2.date};
+    var rdvdata2 = {medecinid : userm.userid,userid : datam2.idu, date:datam2.date};
     userf.confirmerRDV(rdvdata2,function () {
         res.send('Confirmer avec succes')
         })
