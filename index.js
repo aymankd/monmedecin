@@ -17,11 +17,15 @@ app.set('view engine','ejs')
 app.set('views','views')
 
 app.listen(4000,() =>{
-  console.log("server listening on port 3000")  
+  console.log("server listening on port 4000")  
 })
 
 app.use('/testcalendar', (req,res,next) => {
   res.render('gghtml')
+})
+
+app.use('/ManageProfile', (req,res,next) => {
+  res.render('ManageProfile')
 })
 
 app.use('/',homeRouter)
