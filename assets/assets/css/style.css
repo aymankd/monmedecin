@@ -2059,3 +2059,39 @@ button {
 .profile-tab p{
   font-weight: 600;
   color: #0062cc;
+}
+
+/*Select + checkboxes*/
+.selectpicker {
+  width: 200px;
+}
+
+.form-select {
+  position: relative;
+}
+
+.form-select select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}

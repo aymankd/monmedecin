@@ -179,6 +179,33 @@
                                         </div>
                                       </div>
                                   </div>
+
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <label>maladies</label>
+                                    </div>
+                                   <div class="col-md-6">
+                                    <form>
+                                      <div class="selectpicker" multiple data-live-search="true">
+                                        <div class="form-select" onclick="showCheckboxes()">
+                                          <select>
+                                            <option>Select an option</option>
+                                          </select>
+                                          <div class="overSelect"></div>
+                                        </div>
+                                        <div id="checkboxes">
+                                          <label for="one">
+                                            <input type="checkbox" id="one" />First checkbox</label>
+                                          <label for="two">
+                                            <input type="checkbox" id="two" />Second checkbox</label>
+                                          <label for="three">
+                                            <input type="checkbox" id="three" />Third checkbox</label>
+                                        </div>
+                                      </div>
+                                    </form>
+                                   </div>
+                                </div>
+                                   <br>
                                   <div class="row">
                                       <div class="col-md-6">
                                           <label>Mot de passe</label>
@@ -324,7 +351,21 @@
 
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+<script>
+  var expanded = false;
 
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+</script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script type="text/javascript">
@@ -346,5 +387,7 @@
         });
     });
   </script>
+
+  
 </body>
 </html>
