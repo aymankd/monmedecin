@@ -120,6 +120,19 @@ User.prototype = {
             else
                 callback(null);
         }); 
+    },
+    setinfopatient : function(id,body,callback){
+        
+        con.query("INSERT INTO `patient`(`Nom`, `Prenom`, `Age`, `Telephone`) VALUES ("+body.nom+","+body.prenom+","+body.age+","+body.telephone+") ;"
+         
+           // INSERT INTO `tabmaladie`(`Id_patient`, `id_maladie`) VALUES ("+id+","+body.maladie+")"  
+           
+           , function (err, result) {
+           if (err) 
+                console.log(err.message)
+            callback();
+
+        }); 
     }
 };
 
