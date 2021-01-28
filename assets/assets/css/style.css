@@ -2062,15 +2062,15 @@ button {
 }
 
 /*Select + checkboxes*/
-.selectpicker {
+.multiselect {
   width: 200px;
 }
 
-.form-select {
+.selectBox {
   position: relative;
 }
 
-.form-select select {
+.selectBox select {
   width: 100%;
   font-weight: bold;
 }
@@ -2081,6 +2081,7 @@ button {
   right: 0;
   top: 0;
   bottom: 0;
+  
 }
 
 #checkboxes {
