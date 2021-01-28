@@ -123,16 +123,20 @@ User.prototype = {
     },
     setinfopatient : function(id,body,callback){
         
-        con.query("INSERT INTO `patient`(`Nom`, `Prenom`, `Age`, `Telephone`) VALUES ("+body.nom+","+body.prenom+","+body.age+","+body.telephone+") ;"
-         
-           // INSERT INTO `tabmaladie`(`Id_patient`, `id_maladie`) VALUES ("+id+","+body.maladie+")"  
-           
-           , function (err, result) {
+        con.query("UPDATE `patient` SET `Nom`="+body.nom+",`Prenom`="+body.prenom+",`Age`="+body.age+" ,`Telephone`="+body.telephone+" WHERE Id_user="+id) , function (err, result) {
            if (err) 
                 console.log(err.message)
             callback();
 
-        }); 
+        }; 
+    },
+    getmaladies : function (callback){
+        con.query("SELECT nom FROM maladies", function (err, result, fields){
+            if (err) 
+                console.log(err.message)
+            callback(result);
+        });
+
     }
 };
 

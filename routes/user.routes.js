@@ -26,17 +26,16 @@ router.post(
         let telephone=req.body.telephone;
 
             let UserInput = {
-                nom=req.body.nom,
-                prenom=req.body.prenom,
-                age=req.body.age,
-                telephone=req.body.telephone,
+                nom:req.body.nom,
+                prenom:req.body.prenom,
+                age:req.body.age,
+                telephone:req.body.telephone
 
             };
             user.setinfopatient(user_id,UserInput,function (resolt) {
                     
             })
-    }
-)
+    })
 
 
 
