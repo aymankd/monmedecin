@@ -139,68 +139,70 @@
               <div class="col-md-8">
                   <div class="tab-content profile-tab" id="myTabContent">
                       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                  <div class="row">
+                        <% if (locals.infopatient) { %>          
+                        <div class="row">
                                       <div class="col-md-6">
-                                          <label>Id</label>
+                                          <label>Nom</label>
                                       </div>
                                       <div class="col-md-6">
-                                          <p>Kshiti123</p>
-                                      </div>
-                                  </div>
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <label>Nome</label>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Merci de donné votre correct nome " >
+                                        <input type="text" class="form-control" placeholder="Votre nom exact " value="<%  __append(infopatient[0].Nom) %>" >
                                       </div>
                                   </div>
                                   <br>
                                   <div class="row">
                                       <div class="col-md-6">
-                                          <label>Email</label>
+                                          <label>Prenom</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="email" class="form-control" placeholder="Modifer votre email " >
+                                        <input type="text" class="form-control" placeholder="Votre prénom exact"value="<%  __append(infopatient[0].Prenom) %>" >
                                       </div>
                                   </div>
                                   <br>
                                   <div class="row">
                                       <div class="col-md-6">
-                                          <label>Phone</label>
+                                          <label>Age</label>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Entrez votre age " value="<%  __append(infopatient[0].Age) %>" >
+                                      </div>
+                                  </div>
+                                  <br>
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <label>Téléphone</label>
                                       </div>
                                       <div class="col-md-6">
                                         <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text">+212</span>
                                         </div>
-                                          <input type="text" class="form-control" placeholder="Modifer votre num " >
+
+                                          <input type="text" class="form-control" placeholder="Modifer votre numéro " value="<%  __append(infopatient[0].Telephone) %>">
                                         </div>
                                       </div>
                                   </div>
 
                                   <div class="row">
                                     <div class="col-md-6">
-                                        <label>maladies</label>
+                                        <label>Maladies</label>
                                     </div>
                                    <div class="col-md-6">
                                     <div class="row d-flex justify-content-center mt-100" >
                                       <div class="col-md-12"> 
-                                        <select id="choices-multiple-remove-button"  placeholder="Select upto 5 tags" multiple>
-                                              <option value="HTML">HTML</option>
-                                              <option value="Jquery">Jquery</option>
-                                              <option value="CSS">CSS</option>
-                                              <option value="Bootstrap 3">Bootstrap 3</option>
-                                              <option value="Bootstrap 4">Bootstrap 4</option>
-                                              <option value="Java">Java</option>
-                                              <option value="Javascript">Javascript</option>
-                                              <option value="Angular">Angular</option>
-                                              <option value="Python">Python</option>
-                                              <option value="Hybris">Hybris</option>
-                                              <option value="SQL">SQL</option>
-                                              <option value="NOSQL">NOSQL</option>
-                                              <option value="NodeJS">NodeJS</option>
-                                          </select> </div>
+
+                                        <select id="choices-multiple-remove-button"  placeholder="Précisez vos maladies ( si vous en avez )" multiple>
+                                          <% if (locals.tabmaladies) { 
+  
+                                            tabmaladies.forEach( (row) => {
+                                              
+                                            %>
+                                          <option value="HTML"><%  __append(row.nom) %></option>
+                                              
+                                                                                      
+                                            <%  });   %>
+
+                                            <% }  %>
+                                              </select> </div>
                                   </div>
                                    </div>
                                 </div>
@@ -220,6 +222,7 @@
                                       <input type="submit" class="profile-edit-btn" style="margin-left:435px; margin-top:30px;" name="btnAddMore" value="Confirmer"/>
                                   </div>
                                   </div>
+                                  <% } %>
                       </div>
                       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                   <div class="row">
@@ -236,16 +239,16 @@
                                           <label>Nouveau Mot de passe</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="password" class="form-control" placeholder="New pass" >
+                                        <input type="password" class="form-control" placeholder="Nouveau mot de passe" >
                                       </div>
                                   </div>
                                   <Br>
                                   <div class="row">
                                       <div class="col-md-6">
-                                          <label>Confirme password</label>
+                                          <label>Confirmez votre mot de passe</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="password" class="form-control" placeholder="Confirme pass" >
+                                        <input type="password" class="form-control" placeholder="Confirmez mot de passe" >
                                       </div>
                                   </div>
                                  
@@ -401,10 +404,7 @@ function showCheckboxes() {
   $(document).ready(function(){
 
 var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-removeItemButton: true,
-maxItemCount:5,
-searchResultLimit:5,
-renderChoiceLimit:5
+removeItemButton: true
 });
 
 

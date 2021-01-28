@@ -90,12 +90,12 @@ User.prototype = {
                 result.forEach(element => {
                     console.log("entred foreach")
                     con.query("SELECT * FROM patient where Id_user = "+element.id_patient,
-                        function (err, res) {
-                        if (err)
-                            console.log(err.message);
+                        function (err1, res) {
+                        if (err1)
+                            console.log(err1.message);
                         else{
                             console.log(element.date)
-                        rowline = {'nom':res[0].Nom,'prenom':res[0].Prenom,'date':element.date,'idp':element.id_patient};
+                       var rowline = {'nom':res[0].Nom,'prenom':res[0].Prenom,'date':element.date,'idp':element.id_patient};
                         rdvdata["rendvinfo"].push(rowline);
                         console.log("entred foreach query")
                         count++;
@@ -130,14 +130,20 @@ User.prototype = {
 
         }; 
     },
-    getmaladies : function (callback){
-        con.query("SELECT nom FROM maladies", function (err, result, fields){
+    getinfopatient : function (id,callback){
+        con.query("SELECT nom FROM maladies", function (err, result){
             if (err) 
                 console.log(err.message)
-            callback(result);
+               else
+                con.query("SELECT * FROM patient where Id_user ="+id, function (err1, result1){
+                    if (err1) 
+                        console.log(err1.message)
+                    callback(result,result1);  
+                });
         });
-
+        
     }
+    
 };
 
 module.exports = User;

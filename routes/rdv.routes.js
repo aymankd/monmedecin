@@ -32,7 +32,7 @@ var userf = new User();
         })    
     })
     router.post('/Supprdvmedecin', (req,res) => {
-        var userm = req.session.user;
+       var userm  = req.session.user;
     var datam = req.body;
     var rdvdata = {medecinid : userm.userid,userid : datam.idu};
     userf.supprimerRDV(rdvdata,function () {
