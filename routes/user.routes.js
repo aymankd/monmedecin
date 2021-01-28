@@ -17,6 +17,27 @@ router.use('/seemore/:id', (req,res) => {
     })
 })
 
+router.post(
+    '/ajoutezinfo',(req,res,next) => {
+        user_id = req.session.user.userid;
+        let nom=req.body.nom;
+        let prenom=req.body.prenom;
+        let age=req.body.age;
+        let telephone=req.body.telephone;
+
+            let UserInput = {
+                nom=req.body.nom,
+                prenom=req.body.prenom,
+                age=req.body.age,
+                telephone=req.body.telephone,
+
+            };
+            user.setinfopatient(user_id,UserInput,function (resolt) {
+                    
+            })
+    }
+)
+
 
 
 module.exports = router
