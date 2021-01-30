@@ -6,32 +6,31 @@ var userf = new User();
 router.use('/manageprofile', (req,res) => {
 let user_id = req.session.user.userid;
     userf.getinfopatient(user_id,function (maladies,info) {
-        console.log("maladies")
-        console.log(maladies)
-        console.log("info")
-        console.log(info)
         res.render('manageprofile',{tabmaladies:maladies , infopatient:info})
     })  
 })
 
-router.post(
-    '/ajoutezinfo',(req,res,next) => {
-        user_id = req.session.user.userid;
-        let nom=req.body.nom;
-        let prenom=req.body.prenom;
-        let age=req.body.age;
-        let telephone=req.body.telephone;
-
-            let UserInput = {
-                nom:req.body.nom,
-                prenom:req.body.prenom,
-                age:req.body.age,
-                telephone:req.body.telephone
-
-            };
-            user.setinfopatient(user_id,UserInput,function (resolt) {
-                    
+router.post('/ManageProfile',(req,res,next) => {
+       var user_id = req.session.user.userid;
+        let UserInput = {
+            pass: req.body.pass,
+            newpass: req.body.newpass,
+            confpass: req.body.confpass
+        };
+        user.setnewpass(user_id,UserInput,function (resolt) {
+            if(resolt==0)
+                res.render('ManageProfile',{msg:'Mot de passe incorrect'});
+                else 
+                {
+                    if(resolt==1)
+                        res.render('ManageProfile',{msg:'Nouveau mot de passe incorrect'});
+                    else{
+                        console.log("foekoefk");
+                        callback();
+                    }
+                }
             })
-    })
 
+
+    })
 module.exports = router

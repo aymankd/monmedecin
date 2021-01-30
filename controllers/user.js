@@ -118,17 +118,8 @@ User.prototype = {
             else if(result.length!=0)
                 callback(result);
             else
-                callback(null);
+            callback(null);
         }); 
-    },
-    setinfopatient : function(id,body,callback){
-        
-        con.query("UPDATE `patient` SET `Nom`="+body.nom+",`Prenom`="+body.prenom+",`Age`="+body.age+" ,`Telephone`="+body.telephone+" WHERE Id_user="+id) , function (err, result) {
-           if (err) 
-                console.log(err.message)
-            callback();
-
-        }; 
     },
     getinfopatient : function (id,callback){
         con.query("SELECT nom FROM maladies", function (err, result){
@@ -142,8 +133,43 @@ User.prototype = {
                 });
         });
         
-    }
-    
-};
+    },
+    setinfopatient : function(id,body,callback){
+        
+        con.query("UPDATE patient SET Nom="+body.nom+", Prenom="+body.prenom+",Age="+body.age+" ,Telephone="+body.telephone+" WHERE Id_user = "+id , function (err, result) {
+           if (err) 
+                console.log(err.message)
+            else
+            con.query("INSERT INTO tabmaladie VALUES ("+id+",)", function (err1, result1){
+                if (err1) 
+                    console.log(err1.message)
+                callback(result,result1);  
+            });
 
+        }); 
+    },
+    setnewpass : function(id,body,callback){
+        con.query("SELECT * FROM user where Id_user="+id+" , password ='"+body.pass+"'" , function (err, result, fields) {
+            if (err) 
+                console.log(err.message);
+            else {
+                if(result.length == 0){
+                    callback(0);
+                }else
+                    {
+                        if(body.newpass == body.confpass){
+                            con.query("UPDATE `user` SET Password = "+body.newpass+" WHERE Id_user= "+id , function (err, result, fields) {
+                           
+                                callback();
+                            });                       
+                        }
+                        else{
+                            callback(1);
+                        }  
+                    }
+            }
+    });
+},     
+
+}
 module.exports = User;
