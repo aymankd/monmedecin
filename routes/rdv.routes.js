@@ -14,7 +14,10 @@ var userf = new User();
         userf.getmedecintrdv(userm.userid,function (resss) {
             console.log("data parsed")
             console.log(resss)
+            if(resss)
             res.render('Rendez_vous',{rdv:resss})
+            else 
+            res.render('EmptyRendezV')
         })  
     })
 

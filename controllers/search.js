@@ -22,7 +22,7 @@ Search.prototype = {
     },
     seemore: function(id,callback)
     {
-        con.query("SELECT * FROM medecin where Id_user = "+id , function (err, result) {
+        con.query("SELECT * FROM medecin where Id_user = ? ",id , function (err, result) {
             if (err) 
                 console.log(err.message);
             else
