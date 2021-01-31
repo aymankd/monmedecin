@@ -25,7 +25,16 @@ app.use('/testcalendar', (req,res,next) => {
   res.render('gghtml')
 })
 
+app.use('/navbar', (req,res,next) => {
+  res.render('navbar')
+})
 
+app.use('/footer', (req,res,next) => {
+  res.render('footer')
+})
+app.use('/EmptyRendezV', (req,res,next) => {
+  res.render('EmptyRendezV')
+})
 
 app.use('/',homeRouter)
 app.use('/',authRouter)

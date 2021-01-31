@@ -491,6 +491,10 @@ h6 {
 .hero_back_recherche {
   background: url("../img/back_rs.svg") top center;
 }
+.hero_back_emptyrendezvous {
+  background: url("../img/emptyrendezvous.svg") top center;
+  background-repeat: no-repeat;
+}
 
 .rowRS {
   margin-top: 56px;
