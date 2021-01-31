@@ -90,7 +90,7 @@
    <section id="services" class="services"></section>
     <br>
     <div class="container emp-profile">
-      <form method="post">
+      <div>
           <div class="row">
               <div class="col-md-4">
                   <div class="profile-img">
@@ -145,7 +145,7 @@
                                           <label>Nom</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Votre nom exact " value="<%  __append(infopatient[0].Nom) %>" >
+                                        <input type="text" class="form-control" id="newnom" placeholder="Votre nom exact " value="<%  __append(infopatient[0].Nom) %>" >
                                       </div>
                                   </div>
                                   <br>
@@ -154,7 +154,7 @@
                                           <label>Prenom</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Votre prénom exact"value="<%  __append(infopatient[0].Prenom) %>" >
+                                        <input type="text" class="form-control" id="newprenom" placeholder="Votre prénom exact"value="<%  __append(infopatient[0].Prenom) %>" >
                                       </div>
                                   </div>
                                   <br>
@@ -163,7 +163,7 @@
                                           <label>Age</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Entrez votre age " value="<%  __append(infopatient[0].Age) %>" >
+                                        <input type="text" class="form-control" id="newage"placeholder="Entrez votre age " value="<%  __append(infopatient[0].Age) %>" >
                                       </div>
                                   </div>
                                   <br>
@@ -177,7 +177,7 @@
                                           <span class="input-group-text">+212</span>
                                         </div>
 
-                                          <input type="text" class="form-control" placeholder="Modifer votre numéro " value="<%  __append(infopatient[0].Telephone) %>">
+                                          <input type="text" class="form-control" id="newtelephone" placeholder="Modifer votre numéro " value="<%  __append(infopatient[0].Telephone) %>">
                                         </div>
                                       </div>
                                   </div>
@@ -190,13 +190,13 @@
                                     <div class="row d-flex justify-content-center mt-100" >
                                       <div class="col-md-12"> 
 
-                                        <select id="choices-multiple-remove-button"  placeholder="Précisez vos maladies ( si vous en avez )" multiple>
+                                        <select id="maladies"  placeholder="Précisez vos maladies ( si vous en avez )" multiple>
                                           <% if (locals.tabmaladies) { 
   
                                             tabmaladies.forEach( (row) => {
                                               
                                             %>
-                                          <option value="HTML"><%  __append(row.nom) %></option>
+                                          <option value="<%  __append(row.id) %>"><%  __append(row.nom) %></option>
                                               
                                                                                       
                                             <%  });   %>
@@ -214,12 +214,12 @@
                                           <label>Mot de passe</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="password" class="form-control" placeholder="Votre mot de passe actuelle" >
+                                        <input type="password" class="form-control" id="confpass" placeholder="Votre mot de passe actuelle" >
                                       </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      <input type="submit" class="profile-edit-btn" style="margin-left:435px; margin-top:30px;" name="btnAddMore" value="Confirmer"/>
+                                      <input type="submit" class="profile-edit-btn" style="margin-left:435px; margin-top:30px;" id="setinfobutton" value="Confirmer"/>
                                   </div>
                                   </div>
                                   <% } %>
@@ -230,7 +230,7 @@
                                           <label>Ancien mot de passe</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="password" class="form-control" placeholder="Ancien mot de passe " >
+                                        <input type="password" id="oldpass" class="form-control" placeholder="Ancien mot de passe " >
                                       </div>
                                   </div>
                                   <br>
@@ -239,7 +239,7 @@
                                           <label>Nouveau Mot de passe</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="password" class="form-control" placeholder="Nouveau mot de passe" >
+                                        <input type="password" id="newpass" class="form-control" placeholder="Nouveau mot de passe" >
                                       </div>
                                   </div>
                                   <Br>
@@ -248,20 +248,20 @@
                                           <label>Confirmez votre mot de passe</label>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="password" class="form-control" placeholder="Confirmez mot de passe" >
+                                        <input type="password" id="confnewpass" class="form-control" placeholder="Confirmez mot de passe" >
                                       </div>
                                   </div>
                                  
                                   <div class="row">
                                   <div class="col-md-6">
-                                    <input type="submit" class="profile-edit-btn" style="margin-left:435px; margin-top:30px;" name="btnAddMore" value="Confirmer"/>
+                                    <input type="submit" id="btnsecurity" class="profile-edit-btn" style="margin-left:435px; margin-top:30px;" value="Confirmer"/>
                                 </div>
                                 </div>
                       </div>
                   </div>
               </div>
           </div>
-      </form>           
+      </div>           
   </div>
   <br> 
   <br>
@@ -314,9 +314,9 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Join Our Newsletter</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
+            <div>
               <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
+            </div>
           </div>
 
         </div>
@@ -362,7 +362,6 @@
   <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
 <script>
   var expanded = false;
@@ -380,22 +379,74 @@ function showCheckboxes() {
 </script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script type="text/javascript">
+  <script> 
     $(document).ready(function(){
-        $("#searchin").on("input", function(){
-          search = $('#searchin').val();
-      if(search!='')
+        $("#btnsecurity").click(function(){
+          console.log("button clicked");
+          Oldpass = $('#oldpass').val();
+          Newpass = $('#newpass').val();
+          confnewpass = $('#confnewpass').val();
+      if(Newpass == confnewpass)
+      {
+        console.log("ajax")
           $.ajax({
-            url : "/recherche",
+            url : "/changepass",
             data :{
-              Stxt: search 
+              oldpass : Oldpass,
+              newpass : Newpass
             },
             method:"POST",
             success : function (res) {
-              $('#search_resu').html(res)
-            }
+              console.log(res)
+          if(res==true)
+            alert("Mot de passe a été changer avec success")
+            else
+            alert("Mot de passe incorrect")
+
+              }
           })
-          else $('#search_resu').html('')
+        }
+          else
+           alert("Mot de passe de confirmation incorrect")
+           
+        });
+        $("#setinfobutton").click(function(){
+          console.log("button clicked setinfo");
+          Newnom = $('#newnom').val();
+          Newprenom = $('#newprenom').val();
+          Newtelephone = $('#newtelephone').val();
+          Newage = $('#newage').val();
+          selectmaladies = document.getElementById('maladies');
+          selectedoptions = Array.from(selectmaladies.selectedOptions);
+          confpass = $('#confpass').val();
+      
+          selectarray = new Array(); 
+          selectedoptions.forEach(element => {
+            selectarray.push(element.value);
+            
+          });
+          console.log(selectarray);
+          $.ajax({
+            url : "/changeinfo",
+            data :{
+              password : confpass,
+              nom : Newnom,
+              prenom : Newprenom,
+              age : Newage,
+              telephone : Newtelephone,
+              maladies : selectarray
+            },
+            method:"POST",
+            success : function (res) {
+              console.log(res)
+          if(res==true)
+            alert("Information changé avec success ")
+            else
+            alert("Mot de passe incorrect")
+
+              }
+          })
+        
         });
     });
   </script>
@@ -403,7 +454,7 @@ function showCheckboxes() {
 <script>
   $(document).ready(function(){
 
-var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+var multipleCancelButton = new Choices('#maladies', {
 removeItemButton: true
 });
 

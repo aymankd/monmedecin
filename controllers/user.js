@@ -122,7 +122,7 @@ User.prototype = {
         }); 
     },
     getinfopatient : function (id,callback){
-        con.query("SELECT nom FROM maladies", function (err, result){
+        con.query("SELECT * FROM maladies", function (err, result){
             if (err) 
                 console.log(err.message)
                else
@@ -134,42 +134,55 @@ User.prototype = {
         });
         
     },
-    setinfopatient : function(id,body,callback){
-        
-        con.query("UPDATE patient SET Nom="+body.nom+", Prenom="+body.prenom+",Age="+body.age+" ,Telephone="+body.telephone+" WHERE Id_user = "+id , function (err, result) {
-           if (err) 
-                console.log(err.message)
-            else
-            con.query("INSERT INTO tabmaladie VALUES ("+id+",)", function (err1, result1){
-                if (err1) 
-                    console.log(err1.message)
-                callback(result,result1);  
-            });
-
-        }); 
-    },
     setnewpass : function(id,body,callback){
-        con.query("SELECT * FROM user where Id_user="+id+" , password ='"+body.pass+"'" , function (err, result, fields) {
+        con.query("SELECT * FROM user where Id_user="+id+" and password ='"+body.pass+"'" , function (err, result, fields) {
             if (err) 
-                console.log(err.message);
+            console.log(err.message);
             else {
                 if(result.length == 0){
                     callback(0);
-                }else
-                    {
-                        if(body.newpass == body.confpass){
-                            con.query("UPDATE `user` SET Password = "+body.newpass+" WHERE Id_user= "+id , function (err, result, fields) {
-                           
-                                callback();
-                            });                       
-                        }
-                        else{
-                            callback(1);
-                        }  
-                    }
+                }else{
+                    con.query("UPDATE `user` SET Password = '"+body.newpass+"' WHERE Id_user= "+id , function (err, result, fields) {
+                        
+                        callback();
+                    });                       
+                    
+                }
             }
-    });
+        });
 },     
+setinfopatient : function(id,body,callback){
+    
+    con.query("SELECT Password FROM user WHERE Id_user = "+id , function (err, result) {
+       if (err) 
+            console.log(err.message)
+        else{
+            let pass=result[0].Password;
+            if(pass==body.password){
+                    con.query("UPDATE patient SET Nom = ?, Prenom = ?, Age = ? , Telephone = ? WHERE Id_user = ? ",[body.nom,body.prenom,body.age,body.telephone,id], function (err1, result1){
+                        if (err1) 
+                        console.log(err1.message)
+        });
+        
+                        con.query("DELETE FROM tabmaladie WHERE Id_patient= "+id , function (err2) {
+                            if (err2) 
+                            console.log(err2.message)
+                            body.maladies.forEach(element => {
+                                con.query("INSERT INTO tabmaladie VALUES ( ? , ? )",[id,element] , function () {
+                                
+                                });
+                                
+                            });
+                            callback(1);
+                            }); 
+            }else
+            callback(0);
+            
+        }
+
+
+    }); 
+}
 
 }
 module.exports = User;
