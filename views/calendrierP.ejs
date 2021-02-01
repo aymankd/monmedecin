@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Monmedecin - Recherche</title>
+  <title>Monmedecin - Home</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+   
   <!-- Favicons -->
 
   <!-- Google Fonts -->
@@ -24,6 +24,9 @@
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.css" rel="stylesheet"/>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.print.css" rel="stylesheet"  media="print" />
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -31,80 +34,17 @@
 </head>
 
 <body>
+
+
+
   <%- include ('navbar2.ejs') %>
-  <main id="main">
-    <!-- ======= Services Section ======= -->
-
-   <section id="services" class="services hero_back_recherche">
-    
-      <div class="container">
-        <h1 class="rowRS title">Pour les patients</h1>
-        <div class="row rowRST">
-             
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="icofont-calendar"></i></div>
-              <h4><a href="/calendrierP">Consulter & Voir mes rendez-vous</a></h4>
-               <p>vous pouvez gérer vos rendez vous ici</p> 
-            </div>
-          </div>
-
-          <div href="#appointment" class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div href="#appointment" class="icon-box">
-              <div href="#appointment" class="icon"><i class="icofont-search-2"></i></div>
-              <h4><a href="#appointment">Trouver votre Medecin maintenant</a></h4>
-             <p>Vous pouvez faire une recherche facile et efficace            </p> 
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="icofont-dna-alt-2"></i></div>
-              <h4><a href="">Accéder à une ordonnance</a></h4>
-            <p>Accéder à une ordonnance</p> 
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section> <!-- End Services Section -->
-  
-    <!-- ======= Appointment Section ======= -->
- <section id="appointment" class="appointment section-bg">
-      <div class="container">
-        <form method="post" class="php-email-form">
-          <div class="form-group ">
-            <div class="search__container">
-                <p class="search__title">
-                    Allez-y, cherchez
-                </p>
-                <input class="search__input" type="text" id="searchin" placeholder="Search">
-            </div>
-          </div>
-          <input type="submit" style="visibility: hidden;" />
-        </form>
-      </div>
-    </section>  <!-- End Appointment Section -->
-
-  
-    <!-- ======= Doctors Section ======= -->
- <section id="doctors" class="doctors marginresultsearch">
-      <div class="container">
-
-        <div class="row" id="search_resu">
 
 
-        </div>
 
-      </div>
-    </section><!-- End Doctors Section -->
-
-  
-
-   
-
+  <main id="main" style="margin-top: 8%">
+    <div id="calendar"></div>
   </main> <!-- End #main -->
+
   <%- include ('footer.ejs') %>
 
   <div id="preloader"></div>
@@ -120,6 +60,12 @@
   <script src="assets/vendor/counterup/counterup.min.js"></script>
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/locale/fr.js"></script>
+
 
   <script src=""></script>
   
@@ -146,5 +92,46 @@
         });
     });
   </script>
+
+<script type="text/javascript">    
+  $(document).ready(function(){
+          var calendar = $("#calendar").fullCalendar({  
+              header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,agendaWeek,agendaDay,listWeek'
+              },
+              locale:'fr',
+              navLinks: true, 
+              editable: true,
+              eventLimit: true, 
+              events: [
+
+              <% if (locals.data) { 
+              
+                data.forEach( (row) => {
+                
+              %>
+
+                  {
+                      title  : 'rendez-vous',
+                      start  : '<%  __append(row.daterdv) %>'
+                  },
+              <%  });   %>
+
+              <% }  %>
+                  {
+                      title  : 'event3',
+                      start  : '2014-01-09T12:30:00',
+                      allDay : false // will make the time show
+                  }
+              ],  // request to load current events
+             
+          });
+          
+       });
+  </script>
+
+
 </body>
 </html>

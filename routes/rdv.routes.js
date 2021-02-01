@@ -8,13 +8,19 @@ var userf = new User();
             res.render('calendrier',{data:resss})
         })
     })
+    router.use('/calendrierP', (req,res,next) => {
+        var userm = req.session.user;
+        userf.getpatientrdv(userm.userid,function (resss) {
+            res.render('calendrierP',{data:resss})
+        })
+    })
 
     router.use('/Rendez_vous', (req,res,next) => {
         var userm = req.session.user;
         userf.getmedecintrdv(userm.userid,function (resss) {
             console.log("data parsed")
             console.log(resss)
-            if(resss)
+            if(resss!=null)
             res.render('Rendez_vous',{rdv:resss})
             else 
             res.render('EmptyRendezV')

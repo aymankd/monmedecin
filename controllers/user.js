@@ -112,7 +112,17 @@ User.prototype = {
         })
     },
     getmedecinrdv : function(id,callback){
-        con.query("SELECT * FROM rendezvous where id_medecin = "+id+" and demande = false ", function (err, result, fields) {
+        con.query("SELECT * FROM rendezvous where id_medecin = "+id+" and demande = false ", function (err, result) {
+            if (err) 
+            console.log(err.message)
+            else if(result.length!=0)
+                callback(result);
+            else
+            callback(null);
+        }); 
+    },
+    getpatientrdv : function(id,callback){
+        con.query("SELECT * FROM rendezvous where id_patient = "+id+" and demande = false ", function (err, result) {
             if (err) 
             console.log(err.message)
             else if(result.length!=0)
