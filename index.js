@@ -31,6 +31,3 @@ app.use('/',managepRouter)
 app.use(function (req, res) {
   res.render('404')
 })
-
-
-

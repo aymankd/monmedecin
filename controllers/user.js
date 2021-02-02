@@ -112,17 +112,17 @@ User.prototype = {
         })
     },
     getmedecinrdv : function(id,callback){
-        con.query("SELECT * FROM rendezvous where id_medecin = "+id+" and demande = false ", function (err, result) {
+        con.query("SELECT x.daterdv , (Select Prenom from patient where id_user = x.id_patient ) as prenomP , (Select Nom from patient where id_user = x.id_patient ) as nomP  FROM rendezvous x where x.id_medecin = ? and demande = false ",id, function (err, result) {
             if (err) 
             console.log(err.message)
             else if(result.length!=0)
-                callback(result);
+                    callback(result);
             else
             callback(null);
         }); 
     },
     getpatientrdv : function(id,callback){
-        con.query("SELECT * FROM rendezvous where id_patient = "+id+" and demande = false ", function (err, result) {
+        con.query("SELECT x.daterdv , (Select Prenom_M from medecin where id_user = x.id_medecin ) as prenomP , (Select Nom_M from medecin where id_user = x.id_medecin ) as nomP  FROM rendezvous x where x.id_patient = ? and demande = false ",id, function (err, result) {
             if (err) 
             console.log(err.message)
             else if(result.length!=0)

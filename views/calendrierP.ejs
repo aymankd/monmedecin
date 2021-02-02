@@ -62,7 +62,7 @@
   <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
   <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/locale/fr.js"></script>
 
@@ -114,8 +114,9 @@
               %>
 
                   {
-                      title  : 'rendez-vous',
+                      title  : '<%  __append(row.nomP) %> <%  __append(row.prenomP) %>',
                       start  : '<%  __append(row.daterdv) %>'
+                      
                   },
               <%  });   %>
 
